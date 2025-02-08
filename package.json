@@ -1,9 +1,9 @@
 {
-	"name": "roo-cline",
-	"displayName": "Roo Code (prev. Roo Cline)",
+	"name": "ecdysis-agent",
+	"displayName": "Ecdysis Agent",
 	"description": "A VS Code plugin that enhances coding with AI-powered automation, multi-model support, and experimental features.",
-	"publisher": "RooVeterinaryInc",
-	"version": "3.3.15",
+	"publisher": "ecdysis-xyz",
+	"version": "1.0.0",
 	"icon": "assets/icons/rocket.png",
 	"galleryBanner": {
 		"color": "#617A91",
@@ -13,13 +13,13 @@
 		"vscode": "^1.84.0"
 	},
 	"author": {
-		"name": "Roo Vet"
+		"name": "Ecdysis"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/RooVetGit/Roo-Code"
+		"url": "https://github.com/ecdysis-xyz-bot/Ecdysis-Agent"
 	},
-	"homepage": "https://github.com/RooVetGit/Roo-Code",
+	"homepage": "https://github.com/ecdysis-xyz-bot/Ecdysis-Agent",
 	"categories": [
 		"AI",
 		"Chat",
@@ -53,185 +53,185 @@
 		"viewsContainers": {
 			"activitybar": [
 				{
-					"id": "roo-cline-ActivityBar",
-					"title": "Roo Code",
+					"id": "ecdysis-agent-ActivityBar",
+					"title": "Ecdysis Agent",
 					"icon": "$(rocket)"
 				}
 			]
 		},
 		"views": {
-			"roo-cline-ActivityBar": [
+			"ecdysis-agent-ActivityBar": [
 				{
 					"type": "webview",
-					"id": "roo-cline.SidebarProvider",
+					"id": "ecdysis-agent.SidebarProvider",
 					"name": ""
 				}
 			]
 		},
 		"commands": [
 			{
-				"command": "roo-cline.plusButtonClicked",
+				"command": "ecdysis-agent.plusButtonClicked",
 				"title": "New Task",
 				"icon": "$(add)"
 			},
 			{
-				"command": "roo-cline.mcpButtonClicked",
+				"command": "ecdysis-agent.mcpButtonClicked",
 				"title": "MCP Servers",
 				"icon": "$(server)"
 			},
 			{
-				"command": "roo-cline.promptsButtonClicked",
+				"command": "ecdysis-agent.promptsButtonClicked",
 				"title": "Prompts",
 				"icon": "$(notebook)"
 			},
 			{
-				"command": "roo-cline.historyButtonClicked",
+				"command": "ecdysis-agent.historyButtonClicked",
 				"title": "History",
 				"icon": "$(history)"
 			},
 			{
-				"command": "roo-cline.popoutButtonClicked",
+				"command": "ecdysis-agent.popoutButtonClicked",
 				"title": "Open in Editor",
 				"icon": "$(link-external)"
 			},
 			{
-				"command": "roo-cline.settingsButtonClicked",
+				"command": "ecdysis-agent.settingsButtonClicked",
 				"title": "Settings",
 				"icon": "$(settings-gear)"
 			},
 			{
-				"command": "roo-cline.openInNewTab",
+				"command": "ecdysis-agent.openInNewTab",
 				"title": "Open In New Tab",
-				"category": "Roo Code"
+				"category": "Ecdysis Agent"
 			},
 			{
-				"command": "roo-cline.explainCode",
-				"title": "Roo Code: Explain Code",
-				"category": "Roo Code"
+				"command": "ecdysis-agent.explainCode",
+				"title": "Ecdysis Agent: Explain Code",
+				"category": "Ecdysis Agent"
 			},
 			{
-				"command": "roo-cline.fixCode",
-				"title": "Roo Code: Fix Code",
-				"category": "Roo Code"
+				"command": "ecdysis-agent.fixCode",
+				"title": "Ecdysis Agent: Fix Code",
+				"category": "Ecdysis Agent"
 			},
 			{
-				"command": "roo-cline.improveCode",
-				"title": "Roo Code: Improve Code",
-				"category": "Roo Code"
+				"command": "ecdysis-agent.improveCode",
+				"title": "Ecdysis Agent: Improve Code",
+				"category": "Ecdysis Agent"
 			},
 			{
-				"command": "roo-cline.addToContext",
-				"title": "Roo Code: Add To Context",
-				"category": "Roo Code"
+				"command": "ecdysis-agent.addToContext",
+				"title": "Ecdysis Agent: Add To Context",
+				"category": "Ecdysis Agent"
 			},
 			{
-				"command": "roo-cline.terminalAddToContext",
-				"title": "Roo Code: Add Terminal Content to Context",
+				"command": "ecdysis-agent.terminalAddToContext",
+				"title": "Ecdysis Agent: Add Terminal Content to Context",
 				"category": "Terminal"
 			},
 			{
-				"command": "roo-cline.terminalFixCommand",
-				"title": "Roo Code: Fix This Command",
+				"command": "ecdysis-agent.terminalFixCommand",
+				"title": "Ecdysis Agent: Fix This Command",
 				"category": "Terminal"
 			},
 			{
-				"command": "roo-cline.terminalExplainCommand",
-				"title": "Roo Code: Explain This Command",
+				"command": "ecdysis-agent.terminalExplainCommand",
+				"title": "Ecdysis Agent: Explain This Command",
 				"category": "Terminal"
 			},
 			{
-				"command": "roo-cline.terminalFixCommandInCurrentTask",
-				"title": "Roo Code: Fix This Command (Current Task)",
+				"command": "ecdysis-agent.terminalFixCommandInCurrentTask",
+				"title": "Ecdysis Agent: Fix This Command (Current Task)",
 				"category": "Terminal"
 			},
 			{
-				"command": "roo-cline.terminalExplainCommandInCurrentTask",
-				"title": "Roo Code: Explain This Command (Current Task)",
+				"command": "ecdysis-agent.terminalExplainCommandInCurrentTask",
+				"title": "Ecdysis Agent: Explain This Command (Current Task)",
 				"category": "Terminal"
 			}
 		],
 		"menus": {
 			"editor/context": [
 				{
-					"command": "roo-cline.explainCode",
+					"command": "ecdysis-agent.explainCode",
 					"when": "editorHasSelection",
-					"group": "Roo Code@1"
+					"group": "Ecdysis Agent@1"
 				},
 				{
-					"command": "roo-cline.fixCode",
+					"command": "ecdysis-agent.fixCode",
 					"when": "editorHasSelection",
-					"group": "Roo Code@2"
+					"group": "Ecdysis Agent@2"
 				},
 				{
-					"command": "roo-cline.improveCode",
+					"command": "ecdysis-agent.improveCode",
 					"when": "editorHasSelection",
-					"group": "Roo Code@3"
+					"group": "Ecdysis Agent@3"
 				},
 				{
-					"command": "roo-cline.addToContext",
+					"command": "ecdysis-agent.addToContext",
 					"when": "editorHasSelection",
-					"group": "Roo Code@4"
+					"group": "Ecdysis Agent@4"
 				}
 			],
 			"terminal/context": [
 				{
-					"command": "roo-cline.terminalAddToContext",
-					"group": "Roo Code@1"
+					"command": "ecdysis-agent.terminalAddToContext",
+					"group": "Ecdysis Agent@1"
 				},
 				{
-					"command": "roo-cline.terminalFixCommand",
-					"group": "Roo Code@2"
+					"command": "ecdysis-agent.terminalFixCommand",
+					"group": "Ecdysis Agent@2"
 				},
 				{
-					"command": "roo-cline.terminalExplainCommand",
-					"group": "Roo Code@3"
+					"command": "ecdysis-agent.terminalExplainCommand",
+					"group": "Ecdysis Agent@3"
 				},
 				{
-					"command": "roo-cline.terminalFixCommandInCurrentTask",
-					"group": "Roo Code@5"
+					"command": "ecdysis-agent.terminalFixCommandInCurrentTask",
+					"group": "Ecdysis Agent@5"
 				},
 				{
-					"command": "roo-cline.terminalExplainCommandInCurrentTask",
-					"group": "Roo Code@6"
+					"command": "ecdysis-agent.terminalExplainCommandInCurrentTask",
+					"group": "Ecdysis Agent@6"
 				}
 			],
 			"view/title": [
 				{
-					"command": "roo-cline.plusButtonClicked",
+					"command": "ecdysis-agent.plusButtonClicked",
 					"group": "navigation@1",
-					"when": "view == roo-cline.SidebarProvider"
+					"when": "view == ecdysis-agent.SidebarProvider"
 				},
 				{
-					"command": "roo-cline.promptsButtonClicked",
+					"command": "ecdysis-agent.promptsButtonClicked",
 					"group": "navigation@2",
-					"when": "view == roo-cline.SidebarProvider"
+					"when": "view == ecdysis-agent.SidebarProvider"
 				},
 				{
-					"command": "roo-cline.mcpButtonClicked",
+					"command": "ecdysis-agent.mcpButtonClicked",
 					"group": "navigation@3",
-					"when": "view == roo-cline.SidebarProvider"
+					"when": "view == ecdysis-agent.SidebarProvider"
 				},
 				{
-					"command": "roo-cline.historyButtonClicked",
+					"command": "ecdysis-agent.historyButtonClicked",
 					"group": "navigation@4",
-					"when": "view == roo-cline.SidebarProvider"
+					"when": "view == ecdysis-agent.SidebarProvider"
 				},
 				{
-					"command": "roo-cline.popoutButtonClicked",
+					"command": "ecdysis-agent.popoutButtonClicked",
 					"group": "navigation@5",
-					"when": "view == roo-cline.SidebarProvider"
+					"when": "view == ecdysis-agent.SidebarProvider"
 				},
 				{
-					"command": "roo-cline.settingsButtonClicked",
+					"command": "ecdysis-agent.settingsButtonClicked",
 					"group": "navigation@6",
-					"when": "view == roo-cline.SidebarProvider"
+					"when": "view == ecdysis-agent.SidebarProvider"
 				}
 			]
 		},
 		"configuration": {
-			"title": "Roo Code",
+			"title": "Ecdysis Agent",
 			"properties": {
-				"roo-cline.allowedCommands": {
+				"ecdysis-agent.allowedCommands": {
 					"type": "array",
 					"items": {
 						"type": "string"
@@ -245,20 +245,6 @@
 						"git show"
 					],
 					"description": "Commands that can be auto-executed when 'Always approve execute operations' is enabled"
-				},
-				"roo-cline.vsCodeLmModelSelector": {
-					"type": "object",
-					"properties": {
-						"vendor": {
-							"type": "string",
-							"description": "The vendor of the language model (e.g. copilot)"
-						},
-						"family": {
-							"type": "string",
-							"description": "The family of the language model (e.g. gpt-4)"
-						}
-					},
-					"description": "Settings for VSCode Language Model API"
 				}
 			}
 		}
