@@ -2712,4 +2712,21 @@ export class ClineProvider implements vscode.WebviewViewProvider {
 	public getMcpHub(): McpHub | undefined {
 		return this.mcpHub
 	}
+
+	async handleNewTask(description: string) {
+		if (!this.cline) {
+			vscode.window.showErrorMessage("Roo Code is not initialized")
+			return
+		}
+
+		// Show the webview if it's not visible
+		await vscode.commands.executeCommand("roo-cline.focus")
+
+		// Post a message to start a new task
+		await this.postMessageToWebview({
+			type: "action",
+			action: "newTask",
+			payload: { description }
+		})
+	}
 }

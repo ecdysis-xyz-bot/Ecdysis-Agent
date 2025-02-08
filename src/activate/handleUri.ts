@@ -26,6 +26,13 @@ export const handleUri = async (uri: vscode.Uri) => {
 			}
 			break
 		}
+		case "/task": {
+			const taskDescription = query.get("description")
+			if (taskDescription) {
+				await visibleProvider.handleNewTask(decodeURIComponent(taskDescription))
+			}
+			break
+		}
 		default:
 			break
 	}
