@@ -40,52 +40,38 @@ export async function getTheme() {
 				break
 			}
 			const extension = vscode.extensions.all[i]
-			if (extension.packageJSON?.contributes?.themes?.length > 0) {
+			if (extension?.packageJSON?.contributes?.themes?.length > 0) {
 				for (const theme of extension.packageJSON.contributes.themes) {
-					if (theme.label === colorTheme) {
+					if (theme?.label === colorTheme && theme?.path) {
 						const themePath = path.join(extension.extensionPath, theme.path)
-						currentTheme = await fs.readFile(themePath, "utf-8")
-						break
+						try {
+							currentTheme = await fs.readFile(themePath, "utf-8")
+							break
+						} catch (error) {
+							console.warn(`Failed to read theme file: ${themePath}`, error)
+						}
 					}
 				}
 			}
 		}
 
-		if (currentTheme === undefined && defaultThemes[colorTheme]) {
-			const filename = `${defaultThemes[colorTheme]}.json`
-			currentTheme = await fs.readFile(
-				path.join(getExtensionUri().fsPath, "src", "integrations", "theme", "default-themes", filename),
-				"utf-8",
-			)
+		if (!currentTheme) {
+			// フォールバックとしてデフォルトのダークテーマを使用
+			return {
+				type: "dark",
+				colors: {}
+			}
 		}
 
-		// Strip comments from theme
-		let parsed = parseThemeString(currentTheme)
-
-		if (parsed.include) {
-			const includeThemeString = await fs.readFile(
-				path.join(getExtensionUri().fsPath, "src", "integrations", "theme", "default-themes", parsed.include),
-				"utf-8",
-			)
-			const includeTheme = parseThemeString(includeThemeString)
-			parsed = mergeJson(parsed, includeTheme)
+		return convertTheme(parseThemeString(currentTheme))
+	} catch (error) {
+		console.error("Error loading color theme: ", error)
+		// エラー時のフォールバック
+		return {
+			type: "dark",
+			colors: {}
 		}
-
-		const converted = convertTheme(parsed)
-
-		converted.base = (
-			["vs", "hc-black"].includes(converted.base)
-				? converted.base
-				: colorTheme.includes("Light")
-					? "vs"
-					: "vs-dark"
-		) as any
-
-		return converted
-	} catch (e) {
-		console.log("Error loading color theme: ", e)
 	}
-	return undefined
 }
 
 type JsonObject = { [key: string]: any }
@@ -141,5 +127,9 @@ export function mergeJson(
 }
 
 function getExtensionUri(): vscode.Uri {
-	return vscode.extensions.getExtension("rooveterinaryinc.roo-cline")!.extensionUri
+	const extension = vscode.extensions.getExtension("ecdysis-xyz.ecdysis-agent");
+	if (!extension) {
+		throw new Error("Extension not found");
+	}
+	return extension.extensionUri;
 }

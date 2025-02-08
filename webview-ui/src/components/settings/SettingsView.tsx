@@ -748,8 +748,8 @@ const SettingsView = ({ onDone }: SettingsViewProps) => {
 					}}>
 					<p style={{ wordWrap: "break-word", margin: 0, padding: 0 }}>
 						If you have any questions or feedback, feel free to open an issue at{" "}
-						<VSCodeLink href="https://github.com/RooVetGit/Roo-Code" style={{ display: "inline" }}>
-							github.com/RooVetGit/Roo-Code
+						<VSCodeLink href="https://github.com/ecdysis-xyz-bot/Ecdysis-Agent" style={{ display: "inline" }}>
+							github.com/ecdysis-xyz-bot/Ecdysis-Agent
 						</VSCodeLink>{" "}
 						or join{" "}
 						<VSCodeLink href="https://www.reddit.com/r/RooCode/" style={{ display: "inline" }}>

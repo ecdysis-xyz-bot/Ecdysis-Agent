@@ -14,15 +14,15 @@ suite("Roo Code Extension", () => {
 		const startTime = Date.now()
 
 		const expectedCommands = [
-			"roo-cline.plusButtonClicked",
-			"roo-cline.mcpButtonClicked",
-			"roo-cline.historyButtonClicked",
-			"roo-cline.popoutButtonClicked",
-			"roo-cline.settingsButtonClicked",
-			"roo-cline.openInNewTab",
-			"roo-cline.explainCode",
-			"roo-cline.fixCode",
-			"roo-cline.improveCode",
+			"ecdysis-agent.plusButtonClicked",
+			"ecdysis-agent.mcpButtonClicked",
+			"ecdysis-agent.historyButtonClicked",
+			"ecdysis-agent.popoutButtonClicked",
+			"ecdysis-agent.settingsButtonClicked",
+			"ecdysis-agent.openInNewTab",
+			"ecdysis-agent.explainCode",
+			"ecdysis-agent.fixCode",
+			"ecdysis-agent.improveCode",
 		]
 
 		while (Date.now() - startTime < timeout) {
@@ -51,7 +51,7 @@ suite("Roo Code Extension", () => {
 
 	test("Webview panel can be created", () => {
 		const view = vscode.window.createWebviewPanel(
-			"roo-cline.SidebarProvider",
+			"ecdysis-agent.SidebarProvider",
 			"Roo Code",
 			vscode.ViewColumn.One,
 			{},

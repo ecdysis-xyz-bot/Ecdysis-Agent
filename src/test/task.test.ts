@@ -22,7 +22,7 @@ suite("Roo Code Task", () => {
 		await provider.storeSecret("openRouterApiKey", process.env.OPENROUTER_API_KEY || "sk-or-v1-fake-api-key")
 
 		// Create webview panel with development options.
-		const panel = vscode.window.createWebviewPanel("roo-cline.SidebarProvider", "Roo Code", vscode.ViewColumn.One, {
+		const panel = vscode.window.createWebviewPanel("ecdysis-agent.SidebarProvider", "Roo Code", vscode.ViewColumn.One, {
 			enableScripts: true,
 			enableCommandUris: true,
 			retainContextWhenHidden: true,

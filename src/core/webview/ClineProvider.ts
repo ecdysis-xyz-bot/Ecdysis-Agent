@@ -209,15 +209,22 @@ export class ClineProvider implements vscode.WebviewViewProvider {
 
 		// If no visible provider, try to show the sidebar view
 		if (!visibleProvider) {
-			await vscode.commands.executeCommand("roo-cline.SidebarProvider.focus")
-			// Wait briefly for the view to become visible
-			await delay(100)
-			visibleProvider = ClineProvider.getVisibleInstance()
-		}
+			try {
+				await vscode.commands.executeCommand("ecdysis-agent.SidebarProvider.focus")
+				// Wait briefly for the view to become visible
+				await delay(500) // 待ち時間を増やす
+				visibleProvider = ClineProvider.getVisibleInstance()
 
-		// If still no visible provider, return
-		if (!visibleProvider) {
-			return
+				// 2回目の試行
+				if (!visibleProvider) {
+					await vscode.commands.executeCommand("workbench.view.extension.ecdysis-agent-ActivityBar")
+					await delay(500)
+					visibleProvider = ClineProvider.getVisibleInstance()
+				}
+			} catch (error) {
+				console.error("Failed to initialize ClineProvider:", error)
+				vscode.window.showErrorMessage("Failed to initialize Ecdysis Agent. Please try opening the sidebar manually.")
+			}
 		}
 
 		return visibleProvider
@@ -892,7 +899,7 @@ export class ClineProvider implements vscode.WebviewViewProvider {
 						await this.context.globalState.update("allowedCommands", message.commands)
 						// Also update workspace settings
 						await vscode.workspace
-							.getConfiguration("roo-cline")
+							.getConfiguration("ecdysis-agent")
 							.update("allowedCommands", message.commands, vscode.ConfigurationTarget.Global)
 						break
 					case "openMcpSettings": {
@@ -2216,7 +2223,7 @@ export class ClineProvider implements vscode.WebviewViewProvider {
 			experiments,
 		} = await this.getState()
 
-		const allowedCommands = vscode.workspace.getConfiguration("roo-cline").get<string[]>("allowedCommands") || []
+		const allowedCommands = vscode.workspace.getConfiguration("ecdysis-agent").get<string[]>("allowedCommands") || []
 
 		return {
 			version: this.context.extension?.packageJSON?.version ?? "",
@@ -2714,19 +2721,43 @@ export class ClineProvider implements vscode.WebviewViewProvider {
 	}
 
 	async handleNewTask(description: string) {
-		if (!this.cline) {
-			vscode.window.showErrorMessage("Roo Code is not initialized")
-			return
+		try {
+			if (!this.cline) {
+				// Clineの初期化を試みる
+				const { apiConfiguration } = await this.getState()
+				if (!apiConfiguration) {
+					vscode.window.showErrorMessage("API configuration is not set. Please configure the API settings first.")
+					return
+				}
+
+				const state = await this.getState()
+				this.cline = new Cline(
+					this,
+					apiConfiguration,
+					state.customInstructions,
+					state.diffEnabled ?? false,
+					state.checkpointsEnabled ?? false,
+					state.fuzzyMatchThreshold ?? 1.0,
+					description  // taskパラメータを追加
+				)
+			}
+
+			// Show the webview if it's not visible
+			await vscode.commands.executeCommand("ecdysis-agent.focus")
+
+			// Post a message to start a new task
+			await this.postMessageToWebview({
+				type: "partialMessage",
+				partialMessage: {
+					type: "say",
+					say: "new_task",
+					text: description,
+					ts: Date.now()
+				}
+			})
+		} catch (error) {
+			console.error("Error in handleNewTask:", error)
+			vscode.window.showErrorMessage(`Failed to start new task: ${error.message}`)
 		}
-
-		// Show the webview if it's not visible
-		await vscode.commands.executeCommand("roo-cline.focus")
-
-		// Post a message to start a new task
-		await this.postMessageToWebview({
-			type: "action",
-			action: "newTask",
-			payload: { description }
-		})
 	}
 }
